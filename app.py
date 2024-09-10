@@ -1,8 +1,8 @@
-from flask import Flask as Flask
+from flask import Flask as Flask, url_for
 app = Flask(__name__)
 
 @app.route("/web")
-def web():
+def sweb():
     return """<!doctype html>
         <html> 
             <body> 
@@ -26,3 +26,16 @@ def author():
                 <a href="/web">web</a>
             </body>
         </html>"""
+
+@app.route('/lab/oak')
+def oak():
+    path = url_for("static", filename="oak.jpg")
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <h1>Дуб<h1>
+        <img src="'''+ path + '''">
+    <body>
+<html>
+'''
