@@ -1,0 +1,15 @@
+img {
+    width: 1200px;
+    height: 600px;
+    margin: auto;
+}
+
+body {
+    background-color: rgb(27, 108, 27);
+    text-align: center;
+    margin-left: 20px;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+}
