@@ -141,3 +141,70 @@ def menu():
     </body>
 </html>
 '''
+
+@app.route("/lab1/error_400")
+def err400():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Некорректный запрос</div>
+    </body>
+</html>
+''',  400
+
+@app.route("/lab1/error_401")
+def err401():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Ошибка авторизации</div>
+    </body>
+</html>
+''',  401
+
+@app.route("/lab1/error_402")
+def err402():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Необходима оплата</div>
+    </body>
+</html>
+''',  402
+
+@app.route("/lab1/error_403")
+def err403():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Недостаточно прав</div>
+    </body>
+</html>
+''',  403
+
+@app.route("/lab1/error_405")
+def err405():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Не поддерживается.Неверный метод</div>
+    </body>
+</html>
+''',  405
+
+@app.route("/lab1/error_418")
+def err418():
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <div>Я - чайник!</div>
+        <div>Я не могу приготовить кофе!</div>
+    </body>
+</html>
+''',  418
