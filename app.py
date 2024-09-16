@@ -95,3 +95,28 @@ def created():
     </body>
 </html>
 ''', 201 
+
+@app.route('/')
+@app.route('/index')
+def home():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>НГТУ, ФБ, Лабораторные работы</title>
+    </head>
+    <body>
+        <header>
+            <h1>НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных</h1>
+        </header>
+        <div>
+            <ul>
+                <li><a href="/lab1">Первая лабораторная</a></li>
+            </ul>
+        </div>
+        <footer>
+            <p>Лоринец Татьяна Андреевна, ФБИ-22, 3 курс, 2024</p>
+        </footer>
+    </body>
+</html>
+'''
