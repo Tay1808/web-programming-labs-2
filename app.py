@@ -150,6 +150,27 @@ def menu():
         веб-приложений, сознательно предоставляющих лишь самые базовые возможности.
         </div>   
         <a href="/">Назад</a> 
+        <h2>Список роутов!</h2>
+        <div>
+            <ul>
+                <li><a href="/lab1/web">WEB</a></li>
+                <li><a href="/lab1/author">Author</a></li>
+                <li><a href="/lab1/oak">Дуб</a></li>
+                <li><a href="/lab1/counter">Cчетчик</a></li>
+                <li><a href="/lab1/clean_counter">Очистка счетчика</a></li>
+                <li><a href="/lab1/info">Информация</a></li>
+                <li><a href="/lab1/created">Cоздание</a></li>
+                <li><a href="/index">Меню</a></li>
+                <li><a href="/lab1/cook">Кулинарных блог</a></li>
+                <li><a href="/lab1/error_400">Ошибка 400</a></li>
+                <li><a href="/lab1/error_401">Ошибка 401</a></li>
+                <li><a href="/lab1/error_402">Ошибка 402</a></li>
+                <li><a href="/lab1/error_403">Ошибка 403</a></li>
+                <li><a href="/lab1/error_405">Ошибка 405</a></li>
+                <li><a href="/lab1/error_418">Ошибка 418</a></li>
+                <li><a href="/lab1/error_500">Ошибка 500</a></li>
+            </ul>
+        </div>
     </body>
 </html>
 '''
