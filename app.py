@@ -67,6 +67,21 @@ def counter():
 </html>
 '''
 
+@app.route('/lab1/clean_counter')
+def clean_counter():
+    global count
+    count = 0  
+    return '''
+<!doctype html>
+<html>
+    <body>
+        <h1>Счётчик очищен. Для перехода на страницу счетчитчика нажмите ниже.</h1>
+        <a href="/lab1/counter">Вернуться на счетчик!</a>
+    </body>
+</html>
+'''
+
+
 @app.route("/info")
 def info():
     return redirect("/author")
