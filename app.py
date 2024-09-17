@@ -291,3 +291,117 @@ def cooke():
     'X-DENDOBRI': 'Ivamtogogze',
     'X-Dosvidania': 'DoVstrech'
 }
+
+house_build = False 
+
+@app.route('/lab1/resource')
+def start_house():
+    path = url_for("static", filename="travs.jpg")
+    css = url_for("static", filename="err404.css")
+    global house_build 
+    status = "Дом построен" if house_build else "Дома еще нет!"
+    response = f'''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{css}">
+    </head>
+    <body>
+        <h1>{status}</h1>
+        <a href="/lab1/createdhouse">Построить дом</a><br>
+        <a href="/lab1/delete">Снести дом</a><br>
+        <img src = "''' + path + '''">
+    </body>
+</html>
+'''
+    return response, 200
+
+@app.route('/lab1/createdhouse')
+def build():
+    css = url_for("static", filename="err404.css")
+    path = url_for("static", filename="house.png")
+    path1 = url_for("static", filename="house400.jpg")
+    global house_build 
+    if house_build :
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + css + '''">
+        <style>
+            img {
+                width: 50%
+                height:50%
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Дом уже есть. Сначала снесите то, что уже построено</h1>
+        <a href="/lab1/resource">Назад</a><br>
+        <img src = "''' + path1 + '''">
+    </body>
+</html>''', 400
+    else:
+        house_build = True 
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + css + '''">
+        <style>
+            img {
+                width: 50%
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Отлично! Дом построен!</h1>
+        <a href="/lab1/resource">Назад</a><br>
+        <img src = "''' + path + '''">
+    </body>
+</html>''', 201
+    
+@app.route('/lab1/delete')
+def delete_home():
+    css = url_for("static", filename="err404.css")
+    path = url_for("static", filename="delete.jpg")
+    path1 = url_for("static", filename="delete.jpg")
+    global house_build  
+    if house_build:
+        house_build = False 
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + css + '''">
+        <style>
+            img {
+                width: 50%
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Красота! Дом снесен -  можно строить новый!</h1>
+        <a href="/lab1/resource">Назад</a><br>
+        <img src = "''' + path + '''">
+    </body>
+</html>''', 200
+    else:
+        return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="''' + css + '''">
+        <style>
+            img {
+                width: 50%
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Что тут сносить?! Нужно сначала что-то построить!</h1>
+        <a href="/lab1/resource">Назад</a><br>
+        <img src = "''' + path1 + '''">
+    </body>
+</html>
+''', 400 
