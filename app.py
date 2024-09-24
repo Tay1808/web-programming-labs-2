@@ -403,14 +403,19 @@ def delete_home():
 </html>
 ''', 400 
 
-@app.route('/lab2/a/')   
+
+@app.route('/lab2/a')
 def a():
-    return 'ok'
+    return 'без слэша'
 
-#@app.route('/lab2/a')
-#def a():
-#    return 'без слэша'
+@app.route('/lab2/a/')
+def a2():
+    return 'со слэшем'
 
-#@app.route('/lab2/a/')
-#def a2():
-#    return 'со слэшем'
+flower_list = ('роза', 'пион', 'ромашка', 'лилия')
+
+@app.route('/lab2/flowers/<int:flower_id>')
+def flowers(flower_id):
+    return "цветок: " + flower_list[flower_id]
+
+
