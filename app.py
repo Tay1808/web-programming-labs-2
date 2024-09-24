@@ -25,10 +25,7 @@ def web():
                 <h1>web-сервер на flask</h1>
                 <a href = "/lab1/author">author</a>
             </body> 
-        </html>''', 200, {
-            'X-Server': 'sample',
-            'Content-Type': 'text/plain; charset=utf-8'
-        }
+        </html>''', 200
 
 @app.route("/lab1/author")
 def author():
@@ -405,3 +402,15 @@ def delete_home():
     </body>
 </html>
 ''', 400 
+
+@app.route('/lab2/a/')   
+def a():
+    return 'ok'
+
+#@app.route('/lab2/a')
+#def a():
+#    return 'без слэша'
+
+#@app.route('/lab2/a/')
+#def a2():
+#    return 'со слэшем'
