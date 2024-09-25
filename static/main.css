@@ -38,3 +38,7 @@ footer {
     right: 0;
     left: 0;
 }
+
+ul {
+    text-align: left;
+}
