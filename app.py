@@ -453,3 +453,7 @@ def example():
                            name = name, numblab = numblab, 
                            group = group, numbc = numbc,
                            fruits = fruits) 
+
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2.html')
