@@ -17,6 +17,7 @@ def not_found(err):
         </html>''', 404
 
 
+
 @app.route("/lab1/web")
 def web():
     return '''<!doctype html>
@@ -420,7 +421,8 @@ def flowers(flower_id):
         return "Нет такого цветка", 404
     else:
         return "цветок: " + flower_list[flower_id]
-    
+
+
 @app.route('/lab2/add_flower/<name>')
 def add_flower(name):
     flower_list.append(name)
@@ -463,3 +465,35 @@ def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
     return render_template('filter.html', phrase = phrase)
 
+@app.route('/lab2/calc')
+def trasp():
+    return redirect("/lab2/calc/1/1")
+
+@app.route('/lab2/calc/<int:a>')
+def redirect_calc(a):
+    return redirect(url_for('operations', a=a, b=1))
+
+@app.route('/lab2/calc/<int:a>/<int:b>')
+def operations(a, b):
+    multiplication = a * b
+    division = a / b if b != 0 else 'Ошибка: деление на ноль'
+    addition = a + b
+    subtraction = a - b
+    exponentiation = a ** b
+
+    return f'''
+<!doctype html>
+<html>
+    <body>
+    <h1>Расчет с параметрами:</h1>
+    <p>Умножение: {a} * {b} = {multiplication}</p>
+    <p>Деление: {a} / {b} = {division}</p>
+    <p>Сложение: {a} + {b} = {addition}</p>
+    <p>Вычитание: {a} - {b} = {subtraction}</p>
+    <p>Возведение в степень: {a} <sup>{b}</sup> = {exponentiation}</p>
+    </body>
+</html>
+'''
+
+
+    
