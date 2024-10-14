@@ -42,3 +42,9 @@ footer {
 ul {
     text-align: left;
 }
+
+.error {
+    background-color: rgb(255, 183, 239);
+    color: rgb(184, 12, 78);
+    font-size: 22px;
+}
