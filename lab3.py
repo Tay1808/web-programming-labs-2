@@ -12,7 +12,7 @@ def lab():
 def cookie():
     resp = make_response(redirect('/lab3/'))
     resp.set_cookie('name', 'Tay', max_age=5)
-    resp.set_cookie('age', '20')
+    resp.set_cookie('age', '20', max_age=5)
     resp.set_cookie('name_color', 'magenta')
     return resp
 
@@ -185,3 +185,41 @@ def train_ticket():
     # Если есть ошибки, возвращаем форму с ошибками
     return render_template('lab3/train_ticket_form.html', errors=errors)
 
+# Список товаров
+products = [
+    {'name': 'Chanel Classic Flap Bag', 'price': 5000, 'color': 'Black', 'brand': 'Chanel'},
+    {'name': 'Louis Vuitton Neverfull', 'price': 1200, 'color': 'Brown', 'brand': 'Louis Vuitton'},
+    {'name': 'Gucci Marmont Crossbody Bag', 'price': 1500, 'color': 'Pink', 'brand': 'Gucci'},
+    {'name': 'Prada Saffiano Tote', 'price': 2400, 'color': 'Navy', 'brand': 'Prada'},
+    {'name': 'Fendi Baguette Bag', 'price': 3000, 'color': 'Beige', 'brand': 'Fendi'},
+    {'name': 'Dior Saddle Bag', 'price': 2000, 'color': 'Brown', 'brand': 'Dior'},
+    {'name': 'Hermès Birkin Bag', 'price': 10000, 'color': 'Gold', 'brand': 'Hermès'},
+    {'name': 'Burberry Monogram Banner Bag', 'price': 1500, 'color': 'Check', 'brand': 'Burberry'},
+    {'name': 'Valentino Garavani Rockstud Bag', 'price': 2000, 'color': 'Red', 'brand': 'Valentino'},
+    {'name': 'Michael Kors Jet Set Tote', 'price': 250, 'color': 'Black', 'brand': 'Michael Kors'},
+    {'name': 'Tory Burch Perry Triple-Compartment Tote', 'price': 398, 'color': 'Bordeaux', 'brand': 'Tory Burch'},
+    {'name': 'Céline Luggage Tote', 'price': 3500, 'color': 'Black', 'brand': 'Céline'},
+    {'name': 'Chloé Drew Bag', 'price': 1900, 'color': 'Dusty Pink', 'brand': 'Chloé'},
+    {'name': 'Guess Elana Shoulder Bag', 'price': 120, 'color': 'White', 'brand': 'Guess'},
+    {'name': 'Kate Spade New York Margaret Tote', 'price': 298, 'color': 'Peach', 'brand': 'Kate Spade'},
+    {'name': 'Marc Jacobs Snapshot Camera Bag', 'price': 350, 'color': 'Black', 'brand': 'Marc Jacobs'},
+    {'name': 'Balenciaga City Bag', 'price': 2900, 'color': 'Black', 'brand': 'Balenciaga'},
+    {'name': 'Off-White Diagonal Stripe Bag', 'price': 1300, 'color': 'Yellow', 'brand': 'Off-White'},
+    {'name': 'Mansur Gavriel Bucket Bag', 'price': 495, 'color': 'Camel', 'brand': 'Mansur Gavriel'},
+]
+
+
+# Маршрут для отображения формы и поиска товаров
+@lab3.route('/lab3/products')
+def search_products():
+    min_price = request.args.get('min_price', '')
+    max_price = request.args.get('max_price', '')
+    filtered_products = []
+
+    # Фильтрация товаров по заданному диапазону цен
+    if min_price.isdigit() and max_price.isdigit():
+        min_price = int(min_price)
+        max_price = int(max_price)
+        filtered_products = [p for p in products if min_price <= p['price'] <= max_price]
+
+    return render_template('lab3/products.html', products=filtered_products, min_price=min_price, max_price=max_price)
