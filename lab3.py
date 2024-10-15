@@ -106,6 +106,82 @@ def settings():
 
     return resp
 
+@lab3.route('/lab3/clear_settings')
+def clear_settings():
+    resp = make_response(redirect('/lab3/settings'))
+    resp.delete_cookie('color')
+    resp.delete_cookie('background')
+    resp.delete_cookie('font_size')
+    resp.delete_cookie('font_weight')
+    return resp
 
+@lab3.route('/lab3/train_ticket')
+def train_ticket():
+    errors = {}
+    price = 0
 
+    # Получаем данные из формы через метод GET
+    full_name = request.args.get('full_name')
+    seat_type = request.args.get('seat_type')
+    linen = request.args.get('linen')
+    luggage = request.args.get('luggage')
+    age = request.args.get('age')
+    departure = request.args.get('departure')
+    destination = request.args.get('destination')
+    travel_date = request.args.get('travel_date')
+    insurance = request.args.get('insurance')
+
+    # Валидация данных
+    if full_name == '':
+        errors['full_name'] = 'Введите ФИО!'
+    if seat_type == '':
+        errors['seat_type'] = 'Выберите тип полки!'
+    if age == None:
+        errors['age'] = ''
+    elif age =='':
+        errors['age'] = 'Заполните поле!'
+    else:
+        age = int(age)
+        if age < 1 or age > 120:
+            errors['age'] = 'Возраст должен быть от 1 до 120 лет!'
+    if departure == '':
+        errors['departure'] = 'Введите пункт выезда!'
+    if destination == '':
+        errors['destination'] = 'Введите пункт назначения!'
+    if travel_date == '':
+        errors['travel_date'] = 'Выберите дату поездки!'
+
+    # Если ошибок нет, рассчитываем стоимость и показываем билет
+    if not errors:
+        age = int(age)
+        if age < 18:
+            price = 700  # Детский билет
+            ticket_type = 'Детский билет'
+        else:
+            price = 1000  # Взрослый билет
+            ticket_type = 'Взрослый билет'
+
+        # Добавляем к стоимости за тип полки
+        if seat_type in ['нижняя', 'нижняя боковая']:
+            price += 100
+
+        # Добавляем за бельё
+        if linen == 'yes':
+            price += 75
+
+        # Добавляем за багаж
+        if luggage == 'yes':
+            price += 250
+
+        # Добавляем за страховку
+        if insurance == 'yes':
+            price += 150
+
+        # Формируем страницу с билетом
+        return render_template('lab3/ticket.html', full_name=full_name, age=age, departure=departure,
+                               destination=destination, travel_date=travel_date, ticket_type=ticket_type,
+                               price=price)
+
+    # Если есть ошибки, возвращаем форму с ошибками
+    return render_template('lab3/train_ticket_form.html', errors=errors)
 
