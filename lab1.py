@@ -30,8 +30,8 @@ def author():
 
 @lab1.route("/lab1/oak")
 def oak():
-    path = url_for("static", filename="oak.jpg")
-    css = url_for("static", filename="lab1.css")
+    path = url_for("static", filename="lab1/oak.jpg")
+    css = url_for("static", filename="lab1/lab1.css")
     return '''
 <!doctype html>
 <html>
@@ -206,7 +206,7 @@ def err500():
 
 @lab1.route("/lab1/cook")
 def cooke():
-    path = url_for("static", filename="cok.jpg")
+    path = url_for("static", filename="lab1/cok.jpg")
     return '''
 <!doctype html>
 <html>
@@ -234,8 +234,8 @@ house_build = False
 
 @lab1.route('/lab1/resource')
 def start_house():
-    path = url_for("static", filename="travs.jpg")
-    css = url_for("static", filename="err404.css")
+    path = url_for("static", filename="lab1/travs.jpg")
+    css = url_for("static", filename="lab1/err404.css")
     global house_build 
     status = "Дом построен" if house_build else "Дома еще нет!"
     response = f'''
@@ -256,9 +256,9 @@ def start_house():
 
 @lab1.route('/lab1/createdhouse')
 def build():
-    css = url_for("static", filename="err404.css")
-    path = url_for("static", filename="house.png")
-    path1 = url_for("static", filename="house400.jpg")
+    css = url_for("static", filename="lab1/err404.css")
+    path = url_for("static", filename="lab1/house.png")
+    path1 = url_for("static", filename="lab1/house400.jpg")
     global house_build 
     if house_build :
         return '''
@@ -301,9 +301,9 @@ def build():
     
 @lab1.route('/lab1/delete')
 def delete_home():
-    css = url_for("static", filename="err404.css")
-    path = url_for("static", filename="delete.jpg")
-    path1 = url_for("static", filename="delete.jpg")
+    css = url_for("static", filename="lab1/err404.css")
+    path = url_for("static", filename="lab1/delete.jpg")
+    path1 = url_for("static", filename="lab1/delete.jpg")
     global house_build  
     if house_build:
         house_build = False 

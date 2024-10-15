@@ -47,7 +47,7 @@ def flowers(flower_id):
 
 @lab2.route('/lab2/flowers')
 def all_flowers():
-    return render_template('flowers.html', flowers=flower_list)
+    return render_template('lab2/flowers.html', flowers=flower_list)
 
 
 @lab2.route('/lab2/delete_flower/<int:flower_id>', methods=['POST', 'GET'])
@@ -64,7 +64,7 @@ def delete_flower(flower_id):
         ''', 404
     else:
         flower_list.pop(flower_id)
-        return redirect(url_for('all_flowers'))
+        return redirect(url_for('lab2.all_flowers'))
 
 
 @lab2.route('/lab2/clear_flowers')
@@ -96,8 +96,8 @@ def add_flower():
             </html>
             ''', 400
         else:
-            flower_list.lab2end({'name': name, 'price': int(price)})
-            return redirect(url_for('all_flowers'))
+            flower_list.append({'name': name, 'price': int(price)})
+            return redirect(url_for('lab2.all_flowers'))
     return '''
     <html>
     <body>
@@ -126,7 +126,7 @@ def example():
         {'name': 'манго', 'price': 350},
         {'name': 'киви', 'price': 230}
         ]
-    return render_template('example.html', 
+    return render_template('lab2/example.html', 
                            name = name, numblab = numblab, 
                            group = group, numbc = numbc,
                            fruits = fruits) 
@@ -134,13 +134,13 @@ def example():
 
 @lab2.route('/lab2/')
 def lab():
-    return render_template('lab2.html')
+    return render_template('lab2/lab2.html')
 
 
 @lab2.route('/lab2/filters')
 def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
-    return render_template('filter.html', phrase = phrase)
+    return render_template('lab2/filter.html', phrase = phrase)
 
 
 @lab2.route('/lab2/calc')
@@ -206,7 +206,7 @@ berries = [
 
 @lab2.route('/lab2/berries/')
 def show_berries():
-    return render_template('berry.html', berries=berries)
+    return render_template('lab2/berry.html', berries=berries)
 
 
 books = [
@@ -225,5 +225,5 @@ books = [
 
 @lab2.route('/lab2/books/')
 def book_list():
-    return render_template('books.html', books=books)
+    return render_template('lab2/books.html', books=books)
 
