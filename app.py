@@ -52,7 +52,6 @@ def home():
 </html>
 '''
 
-
 @app.errorhandler(500)
 def error_500(err):
     return '''
@@ -70,4 +69,3 @@ def error_500(err):
     </body>
 </html>
 ''',  500
-
