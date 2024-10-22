@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{# номер лабораторной работы: #}
+{% block lab %}Возведение в степень{% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <form method="post" action="/lab4/deg">
+        <h1>Возведение в степень</h1>
+        <input type="number" name="x1"> <sup><input type="number" name="x2"></sup>
+        <input type="submit" value="=">
+    </form>
+{% endblock %}
