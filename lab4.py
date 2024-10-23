@@ -93,7 +93,25 @@ def deg():
         return render_template('lab4/deg.html', error='Ошибка! Нужно заполнить оба поля!')
     x1 = int(x1)
     x2 = int(x2)
-    if x2 == 0 or x1 == 0:
+    if x2 == 0 and x1 == 0:
         return render_template('lab4/deg.html', error='Оба числа не могут быть 0!')
     result = x1 ** x2
     return render_template('lab4/deg.html', x1=x1, x2=x2, result=result) 
+
+
+tree_count=0
+
+@lab4.route('/lab4/tree', methods = ['GET', 'POST'])
+def tree():
+    global tree_count
+    if request.method == 'GET':
+        return render_template('lab4/tree.html', tree_count=tree_count)
+    
+    operation = request.form.get('operation')
+
+    if operation == 'cut':
+        tree_count -= 1
+    elif operation == 'plant':
+        tree_count += 1 
+    return render_template('lab4/tree.html', tree_count = tree_count)
+
