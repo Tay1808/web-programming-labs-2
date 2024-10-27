@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 4: Холодильник{% endblock %}
+
+{% block main %}
+<style>
+    body {
+        background-color: rgb(255, 255, 255);
+        border: 6px solid rgb(101, 103, 255);
+        border-radius: 10px;
+        width: 900px;
+        height: 500px;
+        color: rgb(56, 58, 174);
+        margin-left: 250px;
+        margin-top: 30px;
+    }
+    h1 {
+        color:rgb(101, 103, 255);
+    }
+    header {
+        background-color: rgb(167, 218, 255);
+        color: white
+    }
+    footer {
+        background-color: rgb(167, 218, 255);
+        color: white
+    }
+</style>
+
+<h1>Установка температуры холодильника</h1>
+
+<form method="post">
+    <label for="temperature">Введите температуру (°С):</label>
+    <input type="text" id="temperature" name="temperature">
+    <button type="submit">Установить</button>
+</form>
+
+{% if error %}
+    <div style="color: red;">{{ error }}</div>
+{% elif message %}
+    <div style="color: green;">{{ message }}</div>
+    <div>
+        {% for i in range(snowflakes) %}
+            &#10052;
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}
