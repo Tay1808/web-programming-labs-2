@@ -3,21 +3,12 @@
 {% block lab %}Лабораторная работа 4{% endblock %}
 
 {% block main %}
-    <style>
-        .error {
-            color: rgb(255, 0, 106);
-            font-weight: bold;
-            background-color: rgb(255, 163, 209);
-            width: 380px;
-            height: 25px;
-            border: 1px red;
-            border-radius: 3px;
-            text-align: center;
-        }
-    </style>
 
     {% if authorized %}
-        <h1>Добро пожаловать, {{ name }}!</h1>
+        <h1>Добро пожаловать, {{ user_name }}!</h1>
+        <div>
+            <li><a href="/lab4/users">Список пользователей</a></li>
+        </div>
         <div>
             <form action="/lab4/logout" method="post">
                 <button>Выход</button>
@@ -35,7 +26,7 @@
                 <label for="password">Пароль:</label>
                 <input type="password" id="password" name="password">
             </div>
-            <div class="error">{{ error }}</div>
+            <div style="color: red;">{{ error }}</div>
             <div>
                 <button type="submit">Войти</button>
                 <button type="reset">Отмена</button>
