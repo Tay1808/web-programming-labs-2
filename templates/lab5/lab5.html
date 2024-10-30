@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block lab %}Лабораторная работы 5{% endblock %}
+
+{% block main %}
+<style>
+    div {
+        width: 150px;
+        height: 50px;
+        border: 5px solid rgb(253, 140, 198);
+        border-radius: 10%;
+        background-color: rgb(252, 230, 239);
+        display: inline-block;
+        margin-left: 70px;
+        color: black;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    main {
+        background-color: rgb(253, 108, 178);
+    }
+    h1 {
+        color: white;
+    }
+</style>
+    <h1>База знаний</h1>
+    <div><a href="/lab5/login">Вход</a></div>
+    <div><a href="/lab5/register">Регитсрация</a></div>
+    <div><a href="/lab5/list">Список статей</a></div>
+    <div><a href="/lab5/create">Создать статью</a></div>
+    <div>Ananimus</div>
+{% endblock %}
