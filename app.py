@@ -4,10 +4,11 @@ from lab2 import lab2
 from lab3 import lab3
 from lab4 import lab4
 from lab5 import lab5
+import os 
 
 app = Flask(__name__)
 
-app.config['Secret_KEY'] = os.environ.get('SECRET_KEY', 'секретно-секретный ключ')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секрет')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')
 
 app.register_blueprint(lab1)
@@ -52,6 +53,7 @@ def home():
                 <li><a href="/lab2">Вторая лабораторная</a></li>
                 <li><a href="/lab3">Третья лабораторная</a></li>
                 <li><a href="/lab4">Четвертая лабораторная</a></li>
+                <li><a href="/lab5">Пятая лабораторная</a></li>
             </ul>
         </div>
         <footer>
