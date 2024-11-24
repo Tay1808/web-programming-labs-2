@@ -132,6 +132,45 @@
 {% endblock %}
 
 {% block main %}
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        background-color: #f9f9f9;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(255, 8, 169, 0.682);
+    }
+
+    li span {
+        flex-grow: 1;
+    }
+
+    button {
+        background-color: #ff00ffa7;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    button:hover {
+        background-color: #ff0550bd;
+        border: 1px solid #e6068c;
+        border-radius: 10%;
+    }
+
+</style>
+
     <h1>Список кабинетов</h1>
     <ul id="office-list"></ul>
 
