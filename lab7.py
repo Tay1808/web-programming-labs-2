@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, session
-
+import datetime
 lab7 = Blueprint('lab7',__name__)
 
 @lab7.route('/lab7/')
@@ -56,6 +56,7 @@ films = [
     },
 ]
 
+
 @lab7.route('/lab7/rest-api/films/', methods = ['GET'])
 def get_films():
     return films
@@ -83,6 +84,22 @@ def put_film(id):
     if film['description'] == '':
         return {'description': 'Заполните описание'}, 400
     
+    if len(film['description']) > 2000:
+        return {'description': 'Описание должно быть не более 2000 символов'}, 400
+    
+
+    if film['title'] == '' and film['title_ru'] == '':
+        return {'title': 'Заполните оригинальное или русское название'}, 400
+    
+
+    if film['title_ru'] == '':
+        return {'title_ru': 'Заполните русское название'}, 400
+    
+    year = int(film['year'])
+    current_year = datetime.datetime.now().year
+    if not (1895 <= year <= current_year):
+        return {'year': f'Год должен быть от 1895 до {current_year}'}, 400
+    
     if film['title'] == '':
         film['title'] = film['title_ru']
     
@@ -95,6 +112,20 @@ def add_film():
 
     if film['description'] == '':
         return {'description': 'Заполните описание'}, 400
+    
+    if len(film['description']) > 2000:
+        return {'description': 'Описание должно быть не более 2000 символов'}, 400
+    
+    if film['title'] == '' and film['title_ru'] == '':
+        return {'title': 'Заполните оригинальное или русское название'}, 400
+    
+    if film['title_ru'] == '':
+        return {'title_ru': 'Заполните русское название'}, 400
+    
+    year = int(film['year'])
+    current_year = datetime.datetime.now().year
+    if not (1895 <= year <= current_year):
+        return {'year': f'Год должен быть от 1895 до {current_year}'}, 400
     
     if film['title'] == '':
         film['title'] = film['title_ru']
