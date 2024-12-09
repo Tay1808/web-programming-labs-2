@@ -5,6 +5,53 @@
 {% block script %}
 <script src="{{ url_for('static', filename='lab7/main.js') }}"></script>
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #fd19a2;
+        margin-top: 20px;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(255, 0, 136, 0.893);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ff0088;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #ff2b8e;
+    }
+
+    button {
+        background-color: #ff6dc2;
+        color: white;
+        box-shadow: 3px 3px 5px rgb(156, 0, 70);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    button:hover {
+        background-color: #ff43fc;
+    }
+
     .modal {
         display: none;
         z-index: 100;
@@ -17,9 +64,31 @@
         margin-left: -200px;
         position: absolute;
         padding: 20px;
+        border-radius: 10px;
     }
+
+    .modal label {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .modal input, .modal textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .modal button {
+        width: 48%;
+        margin: 10px 1%;
+    }
+
     .error-message {
         color: red;
+        font-size: 14px;
+        margin-top: 5px;
     }
 </style>
 {% endblock %}
