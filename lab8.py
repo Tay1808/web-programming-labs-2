@@ -1,7 +1,7 @@
 from flask import Blueprint,  render_template, request, redirect, jsonify, session, current_app
 from db import db
 from db.models import users, articles
-from flask_login import login_user, login_required, current_user
+from flask_login import login_user, login_required, logout_user
 from os import path
 import sqlite3
 import psycopg2
@@ -67,3 +67,9 @@ def login():
 @login_required
 def article_list():
     return "Список статей"
+
+@lab8.route('/lab8/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/lab8')
