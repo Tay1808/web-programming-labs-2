@@ -10,9 +10,9 @@
         border-radius: 25%;
         background-color: rgb(252, 230, 239);
         display: inline-block;
-        margin-left: 30px;
+        margin-left: 80px;
         margin-top: 10px;
-        color: black;
+        color: rgb(69, 1, 43);
         text-align: center;
         padding-top: 20px;
     }
@@ -24,19 +24,26 @@
         color: white;
     }
 </style>
-    <h1>База знаний</h1>
-    <div><a href="/lab8/list">Список статей</a></div>
-    <div><a href="/lab8/create">Создать статью</a></div>
-    <div><a href="/lab8/login" class="btn">Вход</a></div>
-    <div><a href="/lab8/register" class="btn">Регистрация</a></div>
-        
-            
 
-    <div style="color: rgb(252, 21, 133); font-weight: bold; font-size: 22px">
-        {% if login %}
-                {{ login }}
-            {% else %}
-                Anonymous
-            {% endif %}
-    </div>
+    <h1>База знаний</h1>
+        <div><a href="/lab8/articles" class="btn">Список статей</a></div>
+        <div><a href="/lab8/create" class="btn">Создать статью</a></div>
+
+        {% if user.is_authenticated %}
+            <div><a href="/lab8/logout" class="btn">Выйти</a></div>
+        {% else %}
+            <div><a href="/lab8/login" class="btn">Войти</a></div>
+            <div><a href="/lab8/register" class="btn">Регистрация</a></div>
+        {% endif %}
+
+        <div>
+            <span class="username">
+                {% if user.is_authenticated %}
+                    {{ user.login }}
+                {% else %}
+                    Anonymous
+                {% endif %}
+            </span>
+        </div>
+
 {% endblock %}
