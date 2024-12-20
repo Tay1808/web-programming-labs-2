@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block lab %}Лабораторная работа 8{% endblock %}
+{% block main %}
+<div class="knowledge-base">
+    <h1>Результаты поиска: "{{ query }}"</h1>
+    <!-- Список результатов поиска -->
+    {% if articles %}
+        <ul class="article-list">
+            {% for article in articles %}
+                <li class="article-item">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.article_text }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>По вашему запросу ничего не найдено.</p>
+    {% endif %}
+</div>
+{% endblock %}

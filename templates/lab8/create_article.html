@@ -10,13 +10,18 @@
     <form action="/lab8/create" method="post">
         <div>
             <label>
-                Заголовок: <input type="text" name="title">
+                Заголовок: <input type="text" name="title" required>
             </label>
         </div>
         <div>
             <label>
-                Содержимое: <textarea name="content"></textarea>
+                Содержимое: <textarea name="content" required></textarea>
             </label>
+        </div>
+
+        <div class="checkbox-label">
+            <input type="checkbox" name="is_public" id="is_public">
+            <label for="is_public">Сделать статью публичной</label>
         </div>
 
         <button type="submit">Создать статью</button>
