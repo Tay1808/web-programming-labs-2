@@ -1,11 +1,11 @@
-
+{% extends "base.html" %}
+{% block lab %}Лабораторная работа 9{% endblock %}
 {% block script %}{% endblock %}
-
 {% block main %}
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #172aa8, #92d0ff); /* Новогодний градиент */
+            background: linear-gradient(135deg, #0a0681, #47a6d9); /* Новогодний градиент */
             color: #fff;
             justify-content: center;
             align-items: center;
@@ -15,33 +15,18 @@
         }
 
         h1 {
-            margin-top: 50px;
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(5, 26, 143, 0.714);
             font-family: 'Pacifico', cursive; /* Красивый шрифт для заголовка */
-        }
-        
-        .boxe {
-            border:5px solid rgb(45, 45, 192);
-            box-shadow: 0 4px 8px rgba(6, 11, 109, 0.762);
-            border-radius: 25%;
-            width: 400px;
-            height: 80px;
-            background-color:rgb(80, 165, 226);
-            margin-left: 530px;
-            font-family: 'Pacifico', cursive; /* Красивый шрифт для заголовка */
-            font-size: 22px;
-            padding-top: 10px;
-            margin-bottom: 50px;
         }
 
         form {
             background: rgba(255, 255, 255, 0.9); /* Полупрозрачный фон формы */
             padding: 20px;
             border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(36, 7, 163, 0.79);
+            box-shadow: 0 4px 8px rgba(5, 17, 150, 0.747);
             width: 300px;
             position: absolute; /* Абсолютное позиционирование */
             top: 50%; /* Смещение вверх на 50% высоты страницы */
@@ -56,7 +41,7 @@
             color: #333;
         }
 
-        input[type="text"] {
+        input[type="number"] {
             width: 90%;
             padding: 10px;
             margin-bottom: 20px;
@@ -68,7 +53,7 @@
         }
 
         button {
-            background: #2a6cd0; /* Красный цвет */
+            background: #3450c1; /* Красный цвет */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -79,7 +64,7 @@
         }
 
         button:hover {
-            background: #240c62; /* Темнее красный */
+            background: #4a6de9; /* Темнее красный */
         }
 
         .snowflake {
@@ -113,16 +98,12 @@
         .snowflake:nth-child(10) { left: 15%; animation-duration: 8s; }
     </style>
 
-    <div class="case">
-        <h1>Поздравления</h1>
-    <div class="boxe">Заберите свое радостное настроение и новогодние поздравление!</div>
-    <form method="POST" action="{{ url_for('lab9.index') }}">
-        <label for="name">Введите ваше имя:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <button type="submit">Далее</button>
+    <h1>Ваш пол</h1>
+    <form method="POST" action="{{ url_for('lab9.gender', name=name, age=age) }}">
+        <button type="submit" name="gender" value="male">Мужчина</button>
+        <button type="submit" name="gender" value="female">Женщина</button>
     </form>
 
-    <!-- Добавляем снежинки -->
     <div class="snowflake">❄</div>
     <div class="snowflake">❄</div>
     <div class="snowflake">❄</div>
