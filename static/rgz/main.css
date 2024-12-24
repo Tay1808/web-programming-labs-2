@@ -1,67 +1,243 @@
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Светло-серый фон */
+    color: #333;
     margin: 0;
-    background-color: #dcdcdb;
-    font-size: 20px;
+    padding: 0;
+    line-height: 1.6; /* Увеличение межстрочного интервала */
 }
 
 h1 {
     font-size: 40px;
-    color: #4b3317;
-    font-family: "Times New Roman";
+    color: #6d491a;
+    font-family: 'Georgia', serif; /* Изменение шрифта на более стильный */
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Мягкая тень для объема */
+    margin-top: 20px;
+    letter-spacing: 2px; /* Увеличение расстояния между буквами */
+    font-weight: bold; /* Жирный шрифт для контраста */
+    line-height: 1.2; /* Увеличение межстрочного интервала */
+}
+
+h2 {
+    font-size: 22px;
+    color: #8d3518;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Мягкая тень для объема */
+    margin-top: 20px;
+    letter-spacing: 2px; /* Увеличение расстояния между буквами */
+    font-weight: bold; /* Жирный шрифт для контраста */
+    line-height: 1.2; /* Увеличение межстрочного интервала */
 }
 
 main {
     margin-bottom: 30px;
     padding: 20px;
     text-align: left;
-    margin-left: 50px;
-    width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; /* Ширина контента */
+    max-width: 1200px; /* Максимальная ширина контента */
     margin-top: 20px;
-    background-color: #b7b7b6;
-    box-shadow: 3px 3px 7px rgb(92, 63, 32);
+    background-color: #d5b885; /* Белый фон */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для контента */
+    border-radius: 10px; /* Скругление углов */
 }
 
 header {
     margin-bottom: 10px;
-    background-color:#847c6a;
+    background-color: #70665c;
     margin-top: 5px;
     text-align: center;
     font-size: 22px;
-    color: #673f07;
+    color: #34230b;
     display: block; 
     width: 100%;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для header */
 }
 
 footer {
     margin-top: 20px;
     padding: 10px;
-    background-color:#847c6a;
-    text-align: left;
+    background-color:#70665c;
+    text-align: center;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
-    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Тень для footer */
 }
 
-ul {
+ul, ol {
     text-align: left;
-    margin-left: 230px;
+    margin-left: 20px;
 }
 
-ol {
-    text-align: left;
+img {
+    width: 80%;
+    height: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    animation: zoomIn 1s ease-in-out;
 }
 
 header a {
     text-decoration: none; /* Убирает подчеркивание у ссылок внутри header */
+    color: #34230b;
 }
 
 .error {
     background-color: rgb(14, 4, 30);
     color: rgb(184, 12, 78);
     font-size: 22px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Стили для кнопок */
+.btn, .add-recipe, .actions button, form button[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимация при наведении */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для кнопок */
+}
+
+.add-recipe {
+    background-color: #50831b; /* Зеленый цвет */
+    color: white;
+}
+
+.add-recipe:hover {
+    background-color: #359211; /* Темнее зеленый при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+
+.btn {
+    background-color: #d08427; /* Красный цвет */
+    color: white;
+}
+
+.btn:hover {
+    background-color: #9acb28; /* Темнее красный при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+.actions .edit {
+    background-color: #d09263; /* Синий цвет */
+    color: white;
+}
+
+.actions .edit:hover {
+    background-color: #f18839; /* Темнее синий при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+.actions .delete {
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+}
+
+.actions .delete:hover {
+    background-color: #da190b; /* Темнее красный при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+form button[type="submit"] {
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+    background-color: #45a049; /* Темнее зеленый при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+/* Стили для формы поиска */
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form label {
+    font-size: 18px;
+    color: #3d362c;
+    margin-right: 10px;
+}
+
+form input[type="text"], form select {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px;
+}
+
+form input[type="text"]:focus, form select:focus {
+    border-color: #4CAF50; /* Зеленый цвет при фокусе */
+    outline: none;
+}
+
+/* Стили для рецептов */
+.cook {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out; /* Анимация появления */
+}
+
+.cook h2 {
+    margin-top: 0;
+}
+
+.cook img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.cook .actions {
+    margin-top: 20px;
+}
+
+/* Анимации */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

@@ -1,0 +1,95 @@
+{% extends "basergz.html" %}
+
+{% block lab %} ♨ {% endblock %}
+
+{% block script %}
+<script>
+    function addRecipe() {
+        const url = '/rgz/add_recipe/';
+        const form = document.getElementById('recipe-form');
+
+        const formData = new FormData(form);
+        const json = {};
+
+        formData.forEach((value, key) => {
+            json[key] = value;
+        });
+
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(json)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.error) {
+                alert('Ошибка: ' + data.error.message);
+            } else {
+                alert('Рецепт успешно добавлен!');
+                form.reset(); // Очищаем форму
+                getRecipeList(); // Обновляем список рецептов
+            }
+        })
+        .catch(function(error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при добавлении рецепта.');
+        });
+    }
+
+    function getRecipeList() {
+        const url = '/rgz/';
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const recipeList = doc.querySelector('.cook');
+            const currentList = document.querySelector('.cook');
+            if (currentList) {
+                currentList.innerHTML = recipeList.innerHTML;
+            }
+        })
+        .catch(function(error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при обновлении списка рецептов.');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('recipe-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+            addRecipe(); // Вызываем функцию добавления рецепта
+        });
+    });
+</script>
+{% endblock %}
+
+{% block main %}
+<h1>Добавить новый рецепт</h1>
+<form id="recipe-form">
+    <label for="name">Название рецепта:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="description">Описание:</label>
+    <textarea id="description" name="description" required></textarea><br><br>
+
+    <label for="ingredients">Ингредиенты:</label>
+    <textarea id="ingredients" name="ingredients" required></textarea><br><br>
+
+    <label for="instructions">Способ приготовления:</label>
+    <textarea id="instructions" name="instructions" required></textarea><br><br>
+
+    <label for="image_url">URL изображения:</label>
+    <input type="text" id="image_url" name="image_url"><br><br>
+
+    <button type="submit">Добавить рецепт</button>
+</form>
+<div class="btn"><a href="/rgz/">Назад</a></div>
+{% endblock %}

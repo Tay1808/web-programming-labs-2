@@ -1,0 +1,49 @@
+{% extends "basergz.html" %}
+
+{% block lab %} ♨ {% endblock %}
+
+{% block main %}
+<h1>Результаты поиска</h1>
+
+{% if query %}
+    <p>Поиск по названию: "{{ query }}"</p>
+{% endif %}
+
+{% if ingredients %}
+    <p>Режим поиска: 
+        {% if mode == 'any' %}
+            Один из ингредиентов
+        {% else %}
+            Оба ингредиента
+        {% endif %}
+    </p>
+    <p>Ингредиенты: {{ ingredients|join(', ') }}</p>
+{% endif %}
+
+{% if recipes %}
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <h2>{{ recipe.name }}</h2>
+                <img src="{{ recipe.image_url }}" alt="{{ recipe.name }}">
+                <p>{{ recipe.description }}</p>
+
+                <!-- Ингредиенты -->
+                <details>
+                    <summary>Ингредиенты</summary>
+                    <p>{{ recipe.ingredients }}</p>
+                </details>
+
+                <!-- Рецепт -->
+                <details>
+                    <summary>Рецепт</summary>
+                    <p>{{ recipe.instructions }}</p>
+                </details>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Ничего не найдено.</p>
+{% endif %}
+
+{% endblock %}

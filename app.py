@@ -96,6 +96,7 @@ def home():
                 <li><a href="/lab7">Седьмая лабораторная</a></li>
                 <li><a href="/lab8">Восьмая лабораторная</a></li>
                 <li><a href="/lab9">Девятая лабораторная</a></li>
+                <li><a href="/rgz">РГЗ</a></li>
             </ul>
         </div>
         <footer>

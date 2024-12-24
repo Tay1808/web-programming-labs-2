@@ -1,0 +1,26 @@
+{% extends "basergz.html" %}
+
+{% block lab %} ♨ {% endblock %}
+
+{% block main %}
+<h1>Редактировать рецепт</h1>
+<form method="POST" action="/rgz/edit_recipe/{{ recipe.id }}/">
+    <label for="name">Название рецепта:</label>
+    <input type="text" id="name" name="name" value="{{ recipe.name }}" required><br><br>
+
+    <label for="description">Описание:</label>
+    <textarea id="description" name="description" required>{{ recipe.description }}</textarea><br><br>
+
+    <label for="ingredients">Ингредиенты:</label>
+    <textarea id="ingredients" name="ingredients" required>{{ recipe.ingredients }}</textarea><br><br>
+
+    <label for="instructions">Инструкции:</label>
+    <textarea id="instructions" name="instructions" required>{{ recipe.instructions }}</textarea><br><br>
+
+    <label for="image_url">URL изображения:</label>
+    <input type="text" id="image_url" name="image_url" value="{{ recipe.image_url }}"><br><br>
+
+    <button type="submit">Сохранить изменения</button>
+</form>
+<div class="btn"><a href="/rgz/">Назад</a></div>
+{% endblock %}

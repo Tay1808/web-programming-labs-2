@@ -1,10 +1,133 @@
 {% extends "basergz.html" %}
-{# номер лабораторной работы: #}
+
 {% block lab %} ♨ {% endblock %}
 
-{# основной контент: #}
+{% block script %}
+<script>
+    function deleteRecipe(recipeId) {
+        const url = `/rgz/delete_recipe/${recipeId}/`;
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Ошибка сети или сервера');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.error) {
+                console.error('Ошибка:', data.error.message);
+            } else {
+                const recipeElement = document.querySelector(`.cook[data-id="${recipeId}"]`);
+                if (recipeElement) {
+                    recipeElement.remove();
+                }
+            }
+        })
+        .catch(function(error) {
+            console.error('Ошибка:', error);
+        });
+    }
+
+    function editRecipe(recipeId) {
+        window.location.href = `/rgz/edit_recipe/${recipeId}/`;
+    }
+
+    function getRecipeList() {
+        const url = '/rgz/';
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Ошибка сети или сервера');
+            }
+            return response.text();
+        })
+        .then(function(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const recipeList = doc.querySelector('.cook');
+            if (!recipeList) {
+                console.error('Элемент с классом .cook не найден в новом HTML');
+                return;
+            }
+            const currentList = document.querySelector('.cook');
+            if (!currentList) {
+                console.error('Элемент с классом .cook не найден на текущей странице');
+                return;
+            }
+            currentList.innerHTML = recipeList.innerHTML;
+        })
+        .catch(function(error) {
+            console.error('Ошибка:', error);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        getRecipeList();
+    });
+</script>
+{% endblock %}
 
 {% block main %}
-    <h1>✿Меню✿</h1>
-    <div>Навигация:</div>
+
+<h1>Готовьте быстро и вкусно!</h1>
+{% if not login %}
+<div class="btn"><a href="/rgz/login/">Войти</a></div>
+{% endif %}
+
+{% if login %}
+<button class="add-recipe"><a href="/rgz/add_recipe/">Добавить рецепт</a></button>
+<div class="btn"><a href="/rgz/logout/">Выйти</a></div>
+{% endif %}
+
+<form action="/rgz/search/" method="GET">
+    <label for="query">Поиск по названию:</label>
+    <input type="text" id="query" name="query" placeholder="Введите название рецепта">
+
+    <label for="ingredients">Ингредиенты (через запятую):</label>
+    <input type="text" id="ingredients" name="ingredients" placeholder="Введите ингредиенты">
+
+    <label for="mode">Режим поиска:</label>
+    <select id="mode" name="mode">
+        <option value="any">Хотя бы один ингредиент</option>
+        <option value="all">Все ингредиенты</option>
+    </select>
+
+    <button type="submit">Поиск</button>
+</form>
+
+<div>
+    {% for cook in cookes %}
+    <div class="cook" data-id="{{ cook.id }}">
+        <h2>{{ cook.name }}</h2>
+        <img src="{{ cook.image_url }}" alt="{{ cook.name }}">
+        <p>{{ cook.description }}</p>
+
+        <!-- Ингредиенты -->
+        <details>
+            <summary>Ингредиенты</summary>
+            <p>{{ cook.ingredients }}</p>
+        </details>
+
+        <!-- Рецепт -->
+        <details>
+            <summary>Рецепт</summary>
+            <p>{{ cook.instructions }}</p>
+        </details>
+
+        <!-- Кнопки управления -->
+        {% if login %}
+        <div class="actions">
+            <button class="edit" onclick="editRecipe({{ cook.id }})">Редактировать</button>
+            <button class="delete" onclick="deleteRecipe({{ cook.id }})">Удалить</button>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
